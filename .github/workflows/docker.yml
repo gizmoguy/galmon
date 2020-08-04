@@ -2,7 +2,7 @@ name: Build and publish Docker image
 
 on:
   push:
-    branches: master
+    branches: '*'
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
       - name: Run buildx
         run: |
           docker buildx build \
-            --tag berthubert/galmon \
+            --tag gizmoguy/galmon-mini \
             --platform linux/amd64,linux/arm/v7,linux/arm64/v8 \
             --output "type=registry" \
             --build-arg MAKE_FLAGS=-j1 \
