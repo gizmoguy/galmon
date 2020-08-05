@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:eoan
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
@@ -19,6 +19,7 @@ RUN sed -i "s%http://archive.ubuntu.com/ubuntu/%${APT_URL}%" /etc/apt/sources.li
     && make $MAKE_FLAGS \
     && prefix=/galmon make install \
     && rm -rf /galmon-src \
+    && apt-get purge -y make gcc g++ git build-essential curl autoconf automake help2man \
     && apt-get autoremove --purge -y \
     && rm -rf /var/lib/apt/lists/*
 
